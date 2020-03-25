@@ -8,7 +8,6 @@ from bati import polygon_buildings
 stations = import_data()
 
 def show_pressure_records():
-    fig = plt.figure()
     for station in stations:
         plt.plot(stations[station].time, stations[station].value, label=stations[station].name)
 
@@ -16,7 +15,6 @@ def show_pressure_records():
 
 
 def show_stations_placements():
-    fig = plt.figure()
     ax = plt.gca()
     ax.scatter(*SOURCE_POSITION, label = 'source')
     circles = []
@@ -26,7 +24,7 @@ def show_stations_placements():
         plt.plot(*polygon.exterior.xy)
     
 
-def show_animation():
+def show_animation(save = 0):
     fig = plt.figure()
     ax = plt.gca()
     ax.scatter(*SOURCE_POSITION, label = 'source')
@@ -46,4 +44,5 @@ def show_animation():
 
     plt.legend()
     ani = animation.FuncAnimation(fig, animate, frames=60, blit=True, interval=200, repeat=False)
-    ani.save('prop_from_source.mp4')
+    if save:
+        ani.save('prop_from_source.mp4')
