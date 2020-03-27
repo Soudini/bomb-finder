@@ -41,7 +41,7 @@ class Station():
                     break
         return self.__first_peak_value
 
-def import_data(DATA_FOLDER):
+def import_data(DATA_FOLDER='./TE'):
     stations = {}
     files = os.listdir(DATA_FOLDER)
     files.sort()
