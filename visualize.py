@@ -5,8 +5,6 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from bati import polygon_buildings
 
-stations = import_data()
-
 def show_pressure_records():
     for station in stations:
         plt.plot(stations[station].time, stations[station].value, label=stations[station].name)

@@ -1,8 +1,6 @@
 import os
 import re
 
-
-DATA_FOLDER = './TE'
 SOURCE_POSITION = (40,65)
 class Station():
     def __init__(self, name, x, y):
@@ -12,18 +10,38 @@ class Station():
         self.time = []
         self.value = []
         self.__initial_time = None
-
+        self.__initial_time_index = None
+        self.__first_peak_value = None
     @property
     def initial_time(self):
         if not(self.__initial_time):
             threshold = self.value[0]
             for index, value in enumerate(self.value):
-                if value > threshold:
+                if value > threshold+10:
                     self.__initial_time = self.time[index]
+                    self.__initial_time_index = index
                     break
         return self.__initial_time
+    @property
+    def initial_time_index(self):
+        if not(self.__initial_time_index):
+            threshold = self.value[0]
+            for index, value in enumerate(self.value):
+                if value > threshold+10:
+                    self.__initial_time_index = index
+                    break
+        return self.__initial_time_index
+    @property
+    def first_peak_value(self):
+        if not(self.__first_peak_value):
+            threshold = self.value[0]
+            for index, value in enumerate(self.value):
+                if value>=threshold+10 and value < self.value[index-1]:
+                    self.__first_peak_value = self.value[index-1]
+                    break
+        return self.__first_peak_value
 
-def import_data():
+def import_data(DATA_FOLDER='./TE'):
     stations = {}
     files = os.listdir(DATA_FOLDER)
     files.sort()
