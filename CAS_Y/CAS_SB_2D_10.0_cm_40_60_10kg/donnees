@@ -1,0 +1,262 @@
+
+# HERA :(Fichier genere - modifier plutot le fichier Python)
+
+liste_materiaux = air, bati, bati2 = bati, bati3 = bati, bati4 = bati, bati5 = bati, bati6 = bati, source;
+liste_schemas = Hydro;
+
+#
+# DONNEES PRINCIPALES
+#
+
+cycle_temps
+{
+	date_max = 0.2001;
+	dt_stop = 1e-14;
+};
+
+geom
+{
+	dimension = 2;
+	type = 0;
+};
+
+interface
+{
+	mosso = 0;
+};
+
+maillage
+{
+	max_coord[0] = 102.6;
+	max_coord[1] = 102.6;
+	max_coord[2] = 102.6;
+	min_coord[0] = 0.0;
+	min_coord[1] = 0.0;
+	min_coord[2] = 0.0;
+	nombre_mailles[0] = 38;
+	nombre_mailles[1] = 38;
+	nombre_mailles[2] = 38;
+	recouvrement = 3;
+};
+
+raffinement
+{
+	extra = 3;
+	extra_frt["source/bati"] = 3;
+	extra_frt["air/bati"] = 3;
+	extra_frt["air/source"] = 3;
+	fact_raff = 3;
+	freq_raffine = 4;
+	freq_regroupe = 2;
+	niv_max = 3;
+	niv_min_frt["source/bati"] = 3;
+	niv_min_frt["air/bati"] = 3;
+	niv_min_frt["air/source"] = 3;
+	propag_sev = 3;
+	seuil_raffine = 0.05;
+	seuil_regroupe = 0.0005;
+};
+
+sorties
+{
+	critere_hdep = 0;
+	critere_prot = 0;
+	protection_nb_fichiers = 2;
+	ryhdep = {0.0 : 0.001};
+	ryprot = {0.0 : 0.1};
+	rystation = {0.0 : 1e-06};
+	sortie_severite = 1;
+	station_coord_fich = "/ccc/scratch/cont003/ecsupele/terlej/plot_P/CAS_SB_2D_10.0_cm_40_60_10kg/StationsSB_2D_10.0_cm_40_60_10kg.dat";
+	station_scalaire[0] = "pmat";
+};
+
+#
+# SCHEMA(S) NUMERIQUE(S)
+#
+
+schema Hydro
+{
+	calcul_dt_vson_moy = 0;
+	cfl_godunov = 0.7;
+	cond_lim[0] = "flux";
+	cond_lim[1] = "flux";
+	cond_lim[2] = "flux";
+	cond_lim[3] = "flux";
+	cond_lim[4] = "flux";
+	cond_lim[5] = "flux";
+	ecin_moyen = "vitesse_partielle";
+	elim_vson_neg = 1;
+	frontiere_rigide = 1;
+	lag_croix = 0;
+	lagrange_limiteur = "tvd";
+	lagrange_mixte_ordre1 = 1;
+	lagrange_schema = "gaia";
+	lagrange_transition_amr_ordre1 = 1;
+	meth_press_vson_moy = "pond_vol";
+	option_energie_interne = 1;
+	ordre[0] = 3;
+	ordre[1] = 3;
+	pente_mixte_ordre1 = 1;
+	projection_limiteur = "tvd";
+	projection_schema = "reconstruction_polynomiale";
+	projection_transition_amr_ordre1 = 1;
+	raff_crit = "shlieren";
+	relaxation = 1;
+	repart_energie = "masse";
+	repart_volume = "volume";
+	rho_min_dilat_autre_mat = 1;
+	severite_normalise_mat = 1;
+};
+
+#
+# LE(S) MATERIAU(X)
+#
+
+#
+# => materiau bati
+#
+materiau bati
+{
+	corps_rigide = 1;
+	gamma = 1.4;
+	ordre_phase_lagrange = 1;
+	ordre_phase_projection = 1;
+
+};
+
+initialisation bati3
+{
+	pmat = 100000.0;
+	rho = 10000000000.0;
+	vitesse[0] = 0.0;
+	vitesse[1] = 0.0;
+};
+
+geometrie bati3
+{
+	domaine_coord = "bati3.frt";
+	domaine_type  = DomContour;
+};
+
+initialisation bati2
+{
+	pmat = 100000.0;
+	rho = 10000000000.0;
+	vitesse[0] = 0.0;
+	vitesse[1] = 0.0;
+};
+
+geometrie bati2
+{
+	domaine_coord = "bati2.frt";
+	domaine_type  = DomContour;
+};
+
+initialisation bati6
+{
+	pmat = 100000.0;
+	rho = 10000000000.0;
+	vitesse[0] = 0.0;
+	vitesse[1] = 0.0;
+};
+
+geometrie bati6
+{
+	domaine_coord = "bati6.frt";
+	domaine_type  = DomContour;
+};
+
+initialisation bati
+{
+	pmat = 100000.0;
+	rho = 10000000000.0;
+	vitesse[0] = 0.0;
+	vitesse[1] = 0.0;
+};
+
+geometrie bati
+{
+	domaine_coord = "bati.frt";
+	domaine_type  = DomContour;
+};
+
+initialisation bati4
+{
+	pmat = 100000.0;
+	rho = 10000000000.0;
+	vitesse[0] = 0.0;
+	vitesse[1] = 0.0;
+};
+
+geometrie bati4
+{
+	domaine_coord = "bati4.frt";
+	domaine_type  = DomContour;
+};
+
+initialisation bati5
+{
+	pmat = 100000.0;
+	rho = 10000000000.0;
+	vitesse[0] = 0.0;
+	vitesse[1] = 0.0;
+};
+
+geometrie bati5
+{
+	domaine_coord = "bati5.frt";
+	domaine_type  = DomContour;
+};
+
+#
+# => materiau source
+#
+materiau source
+{
+	corps_rigide = 0;
+	elim_eclat_avec_voisin = 0.9;
+	frac_voisin_eclat = 0.05;
+	gamma = 3.0;
+	ordre_phase_lagrange = 1;
+	ordre_phase_projection = 1;
+
+};
+
+initialisation source
+{
+	pmat = 6000000000.0;
+	rho = 1200.0;
+	vitesse[0] = 0.0;
+	vitesse[1] = 0.0;
+};
+
+geometrie source
+{
+	domaine_coord = "source.frt";
+	domaine_type  = DomContour;
+};
+
+#
+# => materiau air
+#
+materiau air
+{
+	corps_rigide = 0;
+	gamma = 1.4;
+
+};
+
+initialisation air
+{
+	pmat = 100000.0;
+	rho = 1.29;
+	vitesse[0] = 0.0;
+	vitesse[1] = 0.0;
+};
+
+geometrie air
+{
+	domaine_coord = "air.frt";
+	domaine_type  = DomContour;
+};
+

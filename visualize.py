@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from bati import polygon_buildings
 
+stations = import_data("./TE0")
+
 def show_pressure_records():
     for station in stations:
         plt.plot(stations[station].time, stations[station].value, label=stations[station].name)
@@ -44,3 +46,6 @@ def show_animation(save = 0):
     ani = animation.FuncAnimation(fig, animate, frames=60, blit=True, interval=200, repeat=False)
     if save:
         ani.save('prop_from_source.mp4')
+
+show_stations_placements()
+plt.savefig('placement_source.png')

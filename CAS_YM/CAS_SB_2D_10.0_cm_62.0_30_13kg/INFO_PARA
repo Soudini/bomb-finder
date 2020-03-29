@@ -1,0 +1,20 @@
+hostname    : inti1225
+ pid        : 14518
+ glob. rank : 0
+ part. rank : 0
+ repl. rank : 0
+hostname    : inti1225
+ pid        : 14519
+ glob. rank : 1
+ part. rank : 1
+ repl. rank : 0
+hostname    : inti1225
+ pid        : 14520
+ glob. rank : 2
+ part. rank : 2
+ repl. rank : 0
+hostname    : inti1225
+ pid        : 14521
+ glob. rank : 3
+ part. rank : 3
+ repl. rank : 0

@@ -1,7 +1,9 @@
 import os
 import re
 
+DATA_FOLDER = "./TE0"
 SOURCE_POSITION = (40,65)
+
 class Station():
     def __init__(self, name, x, y):
         self.name = name
@@ -47,7 +49,6 @@ def import_data(DATA_FOLDER='./TE'):
     files.sort()
     for filename in files:
         with open(DATA_FOLDER + '/' + filename) as file:
-            print(f'importing {filename}')
             match = re.findall('ST[0-9]+', filename)
             if match:
                 name = match[0]
@@ -58,8 +59,7 @@ def import_data(DATA_FOLDER='./TE'):
             else :
                 for station_name, x, y in re.findall('(ST[0-9]+)(.+) (.+)', file.read()):
                     stations[station_name] = Station(station_name,float(x),float(y))
-
-    print('import finished')
+                    
     return stations
 
 def get_stations_positions():
