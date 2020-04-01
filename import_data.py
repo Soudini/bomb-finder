@@ -41,7 +41,7 @@ class Station():
                     break
         return self.__first_peak_value
 
-def import_data(DATA_FOLDER='./TE'):
+def import_data(DATA_FOLDER='./TE0'):
     stations = {}
     files = os.listdir(DATA_FOLDER)
     files.sort()
@@ -62,7 +62,7 @@ def import_data(DATA_FOLDER='./TE'):
     print('import finished')
     return stations
 
-def get_stations_positions(DATA_FOLDER='./TE'):
+def get_stations_positions(DATA_FOLDER='./TE0'):
     ret = []
     with open(DATA_FOLDER + '/STATION_NOM') as file:
         for station_name, x, y in re.findall('(ST[0-9]+)(.+) (.+)', file.read()):
