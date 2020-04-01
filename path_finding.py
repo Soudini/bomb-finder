@@ -1,7 +1,6 @@
 import numpy as np
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon, LineString
-from import_data import get_stations_positions
 import matplotlib.pyplot as plt
 import networkx as nx
 

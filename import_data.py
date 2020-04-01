@@ -62,7 +62,7 @@ def import_data(DATA_FOLDER='./TE'):
     print('import finished')
     return stations
 
-def get_stations_positions():
+def get_stations_positions(DATA_FOLDER='./TE'):
     ret = []
     with open(DATA_FOLDER + '/STATION_NOM') as file:
         for station_name, x, y in re.findall('(ST[0-9]+)(.+) (.+)', file.read()):
