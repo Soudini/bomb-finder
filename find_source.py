@@ -6,7 +6,7 @@ import numpy as np
 import bati
 import distance_correlation
 
-SOURCE_PATH = 'CAS_etc...'
+SOURCE_PATH = './TE1'
 m_heur = 10
 
 ##### Restriction du domaine par path_finding
@@ -27,7 +27,7 @@ for x in range(len(corr_mat)):
             y_min = min(y,y_min)
             y_max = max(y,y_max)
 domain = (x_min,x_max,y_min,y_max)
-
+print(f'searching the domain : {domain}')
 ##### Potentielle grid-search
 pas_gs = 2.5
 grid_p, grid_c = gs.grid_search(SOURCE_PATH,domain,m_heur,pas_gs) # renvoie une liste de point/coût
@@ -40,16 +40,17 @@ for k in range (nb_point):
     i = np.argmin(np.array(grid_c))
     starting_points.append(grid_p.pop(i))
     grid_c.pop(i)
-
+print(f'continuing with points {starting_points}')
 ##### Etape finale de recherche locale
 cost = []
 points = []
 
 for point in starting_points:
+    print('launching local search for points', point)
     p,c = ls.local_search(SOURCE_PATH,point,m_heur)
     points.append(p)
     cost.append(c)
 
-res = (point[np.argmin(np.array(cost))],min(cost))
+res = (points[np.argmin(np.array(cost))],min(cost))
 
-print(res)
+print('estimated source position', res)

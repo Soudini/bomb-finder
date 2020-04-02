@@ -4,8 +4,8 @@ import simulation_launcher
 import numpy as np 
 import simulation_launcher as launch
 
-pas_search = 0.5                      #pas de la recherche
-pas_sim = 0.5                           #pas de la simu armen
+pas_search = 0.2                      #pas de la recherche
+pas_sim = 0.2                           #pas de la simu armen
 max_iter = 50                           #nb max d'iterations
 neighborhood = [(pas_search,0),(-pas_search,0),(0,pas_search),(0,-pas_search)] # croix de distance 1 
 
@@ -32,6 +32,7 @@ def local_search(SOURCE_PATH,point,m):
         index = np.argmin(np.array(next_c))
 
         if current_mincost <= next_c[index]: #On vérifie si on a pas atteint un min local
+            print('------------LOCAL MIN FOUND---------------')
             break
 
         current_min = next_p[index]
