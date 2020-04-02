@@ -11,7 +11,7 @@ m_heur = 10
 
 ##### Restriction du domaine par path_finding
 threshold = 0.99
-distance_field=np.load(distance_field.npy)
+distance_field=np.load('distance_field.npy')
 corr_mat = distance_correlation.correlation(distance_field,SOURCE_PATH)
 
 x_min = 100       # Le domaine exploré sera compris entre x_min,x_max y_min et y_max.
