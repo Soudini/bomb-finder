@@ -4,7 +4,7 @@ import bati
 
 def grid_search(SOURCE_PATH,domain,m,pas):
 
-    pas_sim_gs = 0.5
+    pas_sim_gs = 1
 
     L,l = domain[1]-domain[0], domain[3]-domain[2]
     nx = L/pas

@@ -4,8 +4,8 @@ import simulation_launcher
 import numpy as np 
 import simulation_launcher as launch
 
-pas_search = 0.1                        #pas de la recherche
-pas_sim = 0.1                           #pas de la simu armen
+pas_search = 0.5                      #pas de la recherche
+pas_sim = 0.5                           #pas de la simu armen
 max_iter = 50                           #nb max d'iterations
 neighborhood = [(pas_search,0),(-pas_search,0),(0,pas_search),(0,-pas_search)] # croix de distance 1 
 
