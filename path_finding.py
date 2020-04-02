@@ -4,10 +4,9 @@ from shapely.geometry.polygon import Polygon, LineString
 import matplotlib.pyplot as plt
 import networkx as nx
 
-
 from bati import interesting_points, polygon_buildings, Y_MAX, X_MAX, RESOLUTION
 
-
+#-------------------------------------------------UTILS-------------------------------------------------
 def get_visible_points(point1, polygons):
     for point2 in interesting_points:
         return is_visible(point1, point2, polygons)
@@ -69,3 +68,20 @@ base_A = get_adjacency_matrix(interesting_points)
 # print(G.nodes)
 # nx.draw(get_graph(base_A, interesting_points), [point.coords[:][0] for point in interesting_points])
 # plt.show()
+
+def get_estimated_source_position():
+
+    try:
+        distance_field = np.load('distance_field.npy')
+    except Exception as e:
+        from multiprocess_runner import generate_distance_field
+        print(e)
+        print('distance field not found, generating it')
+        distance_field = generate_distance_field()
+
+
+
+    from distance_correlation import correlation
+
+    correlation_matrix = correlation(distance_field)
+    return np.unravel_index(np.nanargmax(correlation_matrix), shape=correlation_matrix.shape)
