@@ -3,8 +3,8 @@ import numpy as np
 from import_data import import_data
 
 
-def correlation(distance_field):
-    stations = import_data()
+def correlation(distance_field, data_folder):
+    stations = import_data(data_folder)
     initial_detection_times = np.array([stations[s].initial_time for s in stations])
     
     normalized_initial_detection_times = initial_detection_times / np.linalg.norm(initial_detection_times)
