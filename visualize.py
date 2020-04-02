@@ -30,11 +30,11 @@ def show_animation(save = 0):
     ax.scatter(*SOURCE_POSITION, label = 'source')
     circles = []
     for station in stations:
-            print(station)
-            circle = plt.Circle((stations[station].x, stations[station].y), radius = stations[station].initial_time * 340, fill = False)
-            ax.add_patch(circle)
-            point = ax.scatter(stations[station].x, stations[station].y, label=stations[station].name)
-            circles.append(circle)
+        print(station)
+        circle = plt.Circle((stations[station].x, stations[station].y), radius = stations[station].initial_time * 340, fill = False)
+        ax.add_patch(circle)
+        point = ax.scatter(stations[station].x, stations[station].y, label=stations[station].name)
+        circles.append(circle)
 
     def animate(delta):
         print(delta)
