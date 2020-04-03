@@ -17,7 +17,7 @@ def launch_simulation(XC = 40, YC = 65, M_TNT = 10, PAS = 1):
 
 def batch_launch_simulation(sim_list):
     folder_names = []
-    print(f'launching {len(sim_list)} imulations')
+    print(f'launching {len(sim_list)} simulations')
     wait = 0
     for sim in sim_list:
         folder_name, need_to_wait = launch_simulation(**sim)
@@ -25,7 +25,7 @@ def batch_launch_simulation(sim_list):
         wait = max(need_to_wait, wait)
     if wait:
         time.sleep(3)
-    print('waiting for the simlations to finish')
+    print('waiting for the simulations to finish')
     while not(all(['T_OK' in os.listdir(f'./{folder}') for folder in folder_names])):
         time.sleep(.2)
     print('alldone')
