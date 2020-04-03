@@ -47,8 +47,8 @@ points = []
 
 for point in starting_points:
     print('launching local search for points', point)
-    p,c = ls.local_search(SOURCE_PATH,point,m_heur)
-    points.append(p)
+    p,m_opt,c = ls.local_search(SOURCE_PATH,point,m_heur)
+    points.append((nanop, m_opt))
     cost.append(c)
 
 res = (points[np.argmin(np.array(cost))],min(cost))
