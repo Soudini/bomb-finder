@@ -45,7 +45,12 @@ print(f'continuing with points {starting_points}')
 cost = []
 points = []
 
-ls_results = ls.batch_local_search(SOURCE_PATH, starting_points, m_heur)
+# ls_results = ls.batch_local_search(SOURCE_PATH, starting_points, m_heur)
+for point in starting_points:
+    print('launching local search for points', point)
+    p,m_opt,c = ls.local_search(SOURCE_PATH,point,m_heur)
+    points.append((p, m_opt))
+    cost.append(c)
 
 #for point in starting_points:
 #    print('launching local search for points', point)
