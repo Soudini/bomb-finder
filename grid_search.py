@@ -1,10 +1,10 @@
 import cost_function
 import simulation_launcher as launch
 import bati
+from variables import *
 
 def grid_search(SOURCE_PATH,domain,m,pas):
 
-    pas_sim_gs = 0.2 
 
     L,l = domain[1]-domain[0], domain[3]-domain[2]
     nx = int(L/pas)

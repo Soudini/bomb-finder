@@ -1,18 +1,19 @@
 import cost_function
 import distance_correlation
 import grid_search as gs
-import local_search as ls
+import multiprocess_local_search as ls
 import numpy as np
 import bati
 import distance_correlation
+from variables import *
 
-SOURCE_PATH = './TE1'
+
 m_heur = 10
 
 ##### Restriction du domaine par path_finding
-threshold = 0.99
 distance_field=np.load('distance_field.npy')
 corr_mat = distance_correlation.correlation(distance_field,SOURCE_PATH)
+
 
 x_min = 100       # Le domaine exploré sera compris entre x_min,x_max y_min et y_max.
 x_max = 0
@@ -29,7 +30,6 @@ for x in range(len(corr_mat)):
 domain = (x_min,x_max,y_min,y_max)
 print(f'searching the domain : {domain}')
 ##### Potentielle grid-search
-pas_gs = 2.5
 grid_p, grid_c = gs.grid_search(SOURCE_PATH,domain,m_heur,pas_gs) # renvoie une liste de point/coût
 
 
@@ -45,12 +45,14 @@ print(f'continuing with points {starting_points}')
 cost = []
 points = []
 
-for point in starting_points:
-    print('launching local search for points', point)
-    p,c = ls.local_search(SOURCE_PATH,point,m_heur)
-    points.append(p)
-    cost.append(c)
+ls_results = ls.batch_local_search(SOURCE_PATH, starting_points, m_heur)
 
-res = (points[np.argmin(np.array(cost))],min(cost))
+#for point in starting_points:
+#    print('launching local search for points', point)
+#    p,c = ls.local_search(SOURCE_PATH,point,m_heur)
+#    points.append(p)
+#    cost.append(c)
 
-print('estimated source position', res)
+#res = (points[np.argmin(np.array(cost))],min(cost))
+print(ls_results)
+print('estimated source position', min(ls_results, key = lambda x:x[1]))

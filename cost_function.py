@@ -2,12 +2,6 @@ import import_data as importd
 import matplotlib.pyplot as plt
 import math 
 
-DATA_FOLDER0 = './TE0'
-DATA_FOLDER1 = './TE1'
-
-stations0 = importd.import_data(DATA_FOLDER0)
-stations1 = importd.import_data(DATA_FOLDER1)
-
 ###Preconditionnement function for clean data
 def preconditionnement(stations1, stations2):
 

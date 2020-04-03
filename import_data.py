@@ -17,7 +17,7 @@ class Station():
         if self.__initial_time == float('inf'):
             threshold = self.value[0]
             for index, value in enumerate(self.value):
-                if value > threshold+10:
+                if value > threshold+3:   
                     self.__initial_time = self.time[index]
                     self.__initial_time_index = index
                     break
@@ -27,7 +27,7 @@ class Station():
         if not(self.__initial_time_index):
             threshold = self.value[0]
             for index, value in enumerate(self.value):
-                if value > threshold+10:
+                if value > threshold+3:
                     self.__initial_time_index = index
                     break
         return self.__initial_time_index
@@ -41,7 +41,7 @@ class Station():
                     break
         return self.__first_peak_value
 
-def import_data(DATA_FOLDER='./TE0'):
+def import_data(DATA_FOLDER='./TE'):
     stations = {}
     files = os.listdir(DATA_FOLDER)
     files.sort()
@@ -60,7 +60,7 @@ def import_data(DATA_FOLDER='./TE0'):
 
     return stations
 
-def get_stations_positions(DATA_FOLDER='./TE0'):
+def get_stations_positions(DATA_FOLDER='./TE'):
     ret = []
     with open(DATA_FOLDER + '/STATION_NOM') as file:
         for station_name, x, y in re.findall('(ST[0-9]+)(.+) (.+)', file.read()):
