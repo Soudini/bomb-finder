@@ -44,5 +44,5 @@ print(f'continuing with points {starting_points}')
 ls_results = ls.batch_local_search(SOURCE_PATH, starting_points, m_heur)
 
 with open('result_{}_{}_{}'.format(SOURCE_PATH.replace('/', ''), pas_sim_gs,pas_sim), 'a') as result:
-    result.write('estimated source position : '+ str(min(ls_results, key = lambda x:x[1])))
+    result.write('estimated source position : '+ str(min(ls_results, key = lambda x:x[1])) + '\n')
     result.write(str(ls_results))
