@@ -45,7 +45,7 @@ def local_search(SOURCE_PATH,point,m, return_list):
             next_points=[(current_min[0]+ng[0],current_min[1]+ng[1]) for ng in neighborhood]
             print('----New point found-----')
         iteration+=1
-    print('---Minimum local ----' + current_min)
+    print('---Minimum local ----' + str(current_min))
     print('Start looking for TNT min')
 
     iteration = 0                  #### recherche de la meilleur masse
