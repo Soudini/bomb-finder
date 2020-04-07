@@ -1,3 +1,5 @@
+# Ancienne version du code non testée sur machine, la plus récente version étant resté sur les serveurs du CEA
+
 import numpy as np
 import bati
 import distance_correlation
