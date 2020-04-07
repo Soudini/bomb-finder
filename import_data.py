@@ -9,15 +9,15 @@ class Station():
         self.y = y
         self.time = []
         self.value = []
-        self.__initial_time = None
+        self.__initial_time = float('inf')
         self.__initial_time_index = None
         self.__first_peak_value = None
     @property
     def initial_time(self):
-        if not(self.__initial_time):
+        if self.__initial_time == float('inf'):
             threshold = self.value[0]
             for index, value in enumerate(self.value):
-                if value > threshold+10:
+                if value > threshold+3:   
                     self.__initial_time = self.time[index]
                     self.__initial_time_index = index
                     break
@@ -27,7 +27,7 @@ class Station():
         if not(self.__initial_time_index):
             threshold = self.value[0]
             for index, value in enumerate(self.value):
-                if value > threshold+10:
+                if value > threshold+3:
                     self.__initial_time_index = index
                     break
         return self.__initial_time_index
@@ -41,13 +41,12 @@ class Station():
                     break
         return self.__first_peak_value
 
-def import_data(DATA_FOLDER='./TE0'):
+def import_data(DATA_FOLDER='./TE'):
     stations = {}
     files = os.listdir(DATA_FOLDER)
     files.sort()
     for filename in files:
         with open(DATA_FOLDER + '/' + filename) as file:
-            print(f'importing {filename}')
             match = re.findall('ST[0-9]+', filename)
             if match:
                 name = match[0]
@@ -59,10 +58,9 @@ def import_data(DATA_FOLDER='./TE0'):
                 for station_name, x, y in re.findall('(ST[0-9]+)(.+) (.+)', file.read()):
                     stations[station_name] = Station(station_name,float(x),float(y))
 
-    print('import finished')
     return stations
 
-def get_stations_positions(DATA_FOLDER='./TE0'):
+def get_stations_positions(DATA_FOLDER='./TE'):
     ret = []
     with open(DATA_FOLDER + '/STATION_NOM') as file:
         for station_name, x, y in re.findall('(ST[0-9]+)(.+) (.+)', file.read()):

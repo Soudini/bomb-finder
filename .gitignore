@@ -7,6 +7,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+/shapely
+/env
 # C extensions
 *.so
 
@@ -108,10 +111,6 @@ dmypy.json
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files

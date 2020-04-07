@@ -69,8 +69,8 @@ base_A = get_adjacency_matrix(interesting_points)
 # nx.draw(get_graph(base_A, interesting_points), [point.coords[:][0] for point in interesting_points])
 # plt.show()
 
-def get_estimated_source_position():
-
+def get_estimated_source_position(data_folder):
+    
     try:
         distance_field = np.load('distance_field.npy')
     except Exception as e:
@@ -83,5 +83,5 @@ def get_estimated_source_position():
 
     from distance_correlation import correlation
 
-    correlation_matrix = correlation(distance_field)
+    correlation_matrix = correlation(distance_field, data_folder)
     return np.unravel_index(np.nanargmax(correlation_matrix), shape=correlation_matrix.shape)

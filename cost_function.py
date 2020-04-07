@@ -2,12 +2,6 @@ import import_data as importd
 import matplotlib.pyplot as plt
 import math 
 
-DATA_FOLDER0 = './TE0'
-DATA_FOLDER1 = './TE1'
-
-stations0 = importd.import_data(DATA_FOLDER0)
-stations1 = importd.import_data(DATA_FOLDER1)
-
 ###Preconditionnement function for clean data
 def preconditionnement(stations1, stations2):
 
@@ -17,7 +11,6 @@ def preconditionnement(stations1, stations2):
 
     initial_time_1 = [station.initial_time for station in stations1.values()]
     initial_time_2 = [station.initial_time for station in stations2.values()]
-
     init_t = min(initial_time_1)                                            
     delta_t = init_t - min(initial_time_2)                                     # On décale la simu2 de delta_t pour faire correspondre les instants initiaux
     max_t = min(init_t + 0.1, station_1.time[-1], station_2.time[-1]+delta_t)
@@ -76,7 +69,6 @@ def cost_function1(DATA_FOLDER1,DATA_FOLDER2):
 
     stations1 = importd.import_data(DATA_FOLDER1)
     stations2 = importd.import_data(DATA_FOLDER2)
-
     values1, values2, times, fact = preconditionnement(stations1, stations2)
     cost = 0
 
