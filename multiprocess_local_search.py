@@ -42,17 +42,17 @@ def local_search(SOURCE_PATH,point,m, return_list):
 
     print('Start looking for TNT min')
 
-    iteration = 0                  #### recherche de la meilleur masse
+    iteration = 0                  #### recherche de la meilleur masse pour le meilleur point trouvé.
     m_opt = m
     while iteration < max_iter_tnt:
-        batch = []                  #Construction du batch de simulation pour l'étape        
-        batch.append({'XC':current_min[0],'YC':current_min[1],'M_TNT':m_opt+pas_tnt,'PAS':pas_sim})
-        batch.append({'XC':current_min[0],'YC':current_min[1],'M_TNT':m_opt-pas_tnt,'PAS':pas_sim})
+        batch = []                                        #Construction du batch de simulation pour l'étape        
+        batch.append({'XC':current_min[0],'YC':current_min[1],'M_TNT':m_opt+pas_tnt,'PAS':pas_sim_tnt})
+        batch.append({'XC':current_min[0],'YC':current_min[1],'M_TNT':m_opt-pas_tnt,'PAS':pas_sim_tnt})
         SIM_PATHS = launch.batch_launch_simulation(batch) #liste des paths résultats des simus
 
         next_c = []
         next_m = []
-        for path in SIM_PATHS:  #recherche du meilleur point
+        for path in SIM_PATHS:  # recherche du meilleur de l'étape 
             c = costf.cost_function1(SOURCE_PATH,path+'/POST1D/TE')
             mn = float(path.split('_')[7].split('k')[0])
             next_c.append(c)
